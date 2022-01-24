@@ -1,4 +1,4 @@
- //Filtering posts by value
+ //Process object filters
 export const processRows = (data, id = '', userName = '', content = '') => {
     if (typeof data !== 'undefined') {
         if (id) {
@@ -28,7 +28,7 @@ export const distinct = (obj) => {
     return obj.filter((value, index, self) => index === self
         .findIndex((row) => (row.from_name === value.from_name)))
 }
-// Sorting object
+// Sorting object A-Z Z-A
 export const sortArray = (mode, obj ) => {
     switch (mode) {
         case 'nameASC':
@@ -48,6 +48,7 @@ export const sortArray = (mode, obj ) => {
             });
     }
 }
+//Return count of values
 export const totalCount = (data, from_id) => {
     return processRows(data,from_id, null, null)
 }
