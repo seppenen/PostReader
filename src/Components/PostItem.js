@@ -15,8 +15,8 @@ export const PostItem = ({row}) => {
 
     return (
         <Wrapper>
-            <p>{message}</p>
             <p>{from_name} {date.toLocaleDateString()} </p>
+            <p>{message}</p>
         </Wrapper>
     )
 }
