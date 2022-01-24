@@ -1,14 +1,20 @@
  //Filtering posts by value
-export const processRows = (data, id = '', userName = '') => {
+export const processRows = (data, id = '', userName = '', content = '') => {
     if (typeof data !== 'undefined') {
         if (id) {
             return data.filter(post => {
                 return post.from_id
                     .includes(id)
             })
-        } else if (userName) {
+        } else if (content) {
             return data.filter(post => {
                 return post.message.toLowerCase()
+                    .includes(content.toLowerCase())
+            })
+        }
+        else if (userName) {
+            return data.filter(post => {
+                return post.from_name.toLowerCase()
                     .includes(userName.toLowerCase())
             })
         }
@@ -43,10 +49,13 @@ export const sortArray = (mode, obj ) => {
     }
 }
 export const totalCount = (data, from_id) => {
-    return processRows(data,from_id, null)
+    return processRows(data,from_id, null, null)
 }
-export const updateList = (data, userName) => {
-    return processRows(data, null, userName)
+export const updateUserList = (data, userName) => {
+    return processRows(data, null, userName, null)
 }
+ export const updatePostList = (data, content) => {
+     return processRows(data, null,null, content)
+ }
 
 

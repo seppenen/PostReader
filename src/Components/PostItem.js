@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  margin: 10px;
   font-size: 0.8em;
+  color: #000;
+  background-color: #fff;
+  padding: 5px;
+  margin-bottom: 15px;
 `;
+
 
 export const PostItem = ({row}) => {
     const {message, from_name, created_time} = row;
@@ -11,8 +15,8 @@ export const PostItem = ({row}) => {
 
     return (
         <Wrapper>
-            {message}
-            <p>{from_name} {date.toLocaleDateString() } </p>
+            <p>{message}</p>
+            <p>{from_name} {date.toLocaleDateString()} </p>
         </Wrapper>
     )
 }

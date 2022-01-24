@@ -11,35 +11,35 @@ import {UserList} from "../Components/UserList";
 import {Spinner} from "../Components/Spinner";
 import {AuthContext} from "../context/AuthProvider";
 import {useParams} from "react-router-dom";
-import {processRows,
+import {
+    processRows,
     distinct,
     sortArray,
     totalCount,
-    updateList
+    updateUserList,
+    updatePostList
 } from "../Utils/Filter";
 
-
+const Section = styled.div`
+  background-color: #333634;
+  height: 100vh;
+`;
 const Container = styled.div`
   max-width: 1000px;
-  margin: 20px auto;
-  background-color: #ddd;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: inherit;
+
 `;
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 2px;
+  justify-content: space-between;
+  gap: 7px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
-const UserListWrapper = styled.div`
-  align-self: flex-start;
-  padding: 10px;
-  border: 1px solid #999999;
-  width: 20%
-`;
-const PostListWrapper = styled.div`
-  padding: 10px;
-  border: 1px solid #999999;
-  width: 80%;
-`;
+
 
 export default function Posts() {
     const {accessToken} = useContext(AuthContext)
@@ -61,7 +61,7 @@ export default function Posts() {
     }
     const getPostItem = () => {
         if (postList) {
-            sortArray(sortMode ,postList)
+            sortArray(sortMode, postList)
             return postList.map(row => {
                 return (<PostItem key={row.id} row={row}/>
                 )
@@ -74,18 +74,17 @@ export default function Posts() {
             sortArray('nameASC', filteredObj);
             return filteredObj.map(row => {
                 const count = totalCount(data, row.from_id)
-                return (<UserList count={count} key={row.id} id={id} row={row}/>
+                return (<UserList count={count} key={row.id} url={id} row={row}/>
                 )
             })
         }
     }
-    const updateUserlist = (userName) => {
-        setUserList(updateList(data, userName))
+    const handleUserSearch = (value) => {
+        setUserList(updateUserList(data, value))
     }
-    const updatePostlist = (userName) => {
-        setPostsList(updateList(data, userName))
+    const handlePostSearch = (value) => {
+        setPostsList(updatePostList(data, value))
     }
-
     useEffect(() => {
         setPostsList(processRows(data, id, null))
     }, [data, id])
@@ -95,26 +94,28 @@ export default function Posts() {
     }, [accessToken])
 
     return (
-        <Container>
-            <Header
-                callBack={(value) =>{
-                    setSortMode(value)
-                }}
-                searchUsers={(userName) => {
-                    updateUserlist(userName);
-                }}
-                searchPosts={(userName) => {
-                    updatePostlist(userName);
-                }}/>
-            <Wrapper>
-                <UserListWrapper>
-                    {getUserList()}
-                </UserListWrapper>
-                <PostListWrapper>
-                    {getPostItem() || <Spinner/>}
-                </PostListWrapper>
-            </Wrapper>
-        </Container>
+        <Section>
+            <Container>
+                <Header
+                    callBack={(value) => {
+                        setSortMode(value)
+                    }}
+                    searchUsers={(value) => {
+                        handleUserSearch(value);
+                    }}
+                    searchPosts={(value) => {
+                        handlePostSearch(value);
+                    }}/>
+                <Wrapper>
+                    <div>
+                        {getUserList()}
+                    </div>
+                    <div>
+                        {getPostItem() || <Spinner/>}
+                    </div>
+                </Wrapper>
+            </Container>
+        </Section>
     )
 
 }
