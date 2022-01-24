@@ -42,6 +42,7 @@ export const UserList = ({url, count, row}) => {
     const [active, setActive] = useState(url)
 
     //Checking for active element
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         url === from_id ? setActive(true) : setActive(false)
     })

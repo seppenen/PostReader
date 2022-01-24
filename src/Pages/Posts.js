@@ -53,6 +53,7 @@ export default function Posts() {
         method: 'get',
         token: accessToken
     }
+
     const doCall = () => {
         ApiService(axiosParams)
             .then(data => {
@@ -91,6 +92,7 @@ export default function Posts() {
 
     useEffect(() => {
         doCall();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [accessToken])
 
     return (
