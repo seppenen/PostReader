@@ -23,12 +23,12 @@ export const processRows = (data, id = '', userName = '', content = '') => {
         }
     }
 }
-// Removing duplicates
+// Removes duplicates
 export const distinct = (obj) => {
     return obj.filter((value, index, self) => index === self
         .findIndex((row) => (row.from_name === value.from_name)))
 }
-// Sorting object A-Z Z-A
+// Sort object A-Z Z-A
 export const sortArray = (mode, obj ) => {
     switch (mode) {
         case 'nameASC':

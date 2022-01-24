@@ -23,7 +23,6 @@ export function Header({callBack, searchUsers, searchPosts}) {
     }
     return (
         <Wrapper>
-
             <input
                 type="text"
                 placeholder="User search"

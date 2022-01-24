@@ -5,16 +5,14 @@ import {useEffect, useState} from "react";
 
 const Wrapper = styled.div`
   font-size: 1.2em;
-  min-width: 200px;
+  min-width: 230px;
   margin-bottom: 10px;
   border: 3px solid #000;
   background-color: ${(props) => (props.active ? "#707070" : '#d9d9d9')};
-
   a:link, a:visited {
     text-decoration: none;
     color: black;
   }
-
   ul {
     list-style-type: none;
     padding: 3px;
@@ -54,7 +52,7 @@ export const UserList = ({url, count, row}) => {
                     <li>
                         <ContentWrapper>
                             {from_name}
-                            <Circle>{count.length}</Circle>
+                            <Circle>{count}</Circle>
                         </ContentWrapper>
                     </li>
                 </ul>

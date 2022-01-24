@@ -23,13 +23,13 @@ import {
 const Section = styled.div`
   background-color: #333634;
   height: 100%;
+  min-height:100vh;
 `;
 const Container = styled.div`
   max-width: 1000px;
   padding: 20px;
   margin: 0 auto;
   background-color: inherit;
-
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -39,8 +39,6 @@ const Wrapper = styled.div`
     flex-direction: column;
   }
 `;
-
-
 export default function Posts() {
     const {accessToken} = useContext(AuthContext)
     const {id} = useParams();
@@ -53,7 +51,6 @@ export default function Posts() {
         method: 'get',
         token: accessToken
     }
-
     const doCall = () => {
         ApiService(axiosParams)
             .then(data => {
@@ -74,7 +71,7 @@ export default function Posts() {
             const filteredObj = distinct(userList || data)
             sortArray('nameASC', filteredObj);
             return filteredObj.map(row => {
-                const count = totalCount(data, row.from_id)
+                const count = totalCount(data, row.from_id).length
                 return (<UserList count={count} key={row.id} url={id} row={row}/>
                 )
             })
