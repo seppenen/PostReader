@@ -1,12 +1,13 @@
 import styled from 'styled-components'
-import {useState} from "react";
-import {apiService} from "../Service/api.service";
+import {useState, useContext} from "react";
+import {ApiService} from "../Service/api.service";
+import {AuthContext} from "../context/AuthProvider";
+import {Navigate, useNavigate} from "react-router-dom";
 
 
 const Wrapper = styled.div`
     height:100vh;
     display:flex;
-    background-color:gray;
     justify-content:center;
     align-items:center;
     
@@ -14,17 +15,20 @@ const Wrapper = styled.div`
 
 const Form = styled.form`
     display:flex;
+    font-size: 0.8em;
     flex-direction:column;
     input[type="text"] {
       margin-bottom:10px;
+      border: 1px solid #3498db;
+      border-radius:5px
     }
 `;
 
-export function LoginPage({setToken}) {
+export default function Login() {
+    const {setAccessToken} = useContext(AuthContext)
     const [user, setUser] = useState()
     const [email, setEmail] = useState()
-    const handleNameChange = (e) => setUser(e.target.value)
-    const handleEmailChange = (e) => setEmail(e.target.value)
+    const navigate = useNavigate()
 
     const axiosParams = {
         method:'post',
@@ -32,29 +36,24 @@ export function LoginPage({setToken}) {
         email: email
     }
 
-    const handleSubmit = () =>{
-            apiService(axiosParams)
+    const handleLogin = () =>{
+        ApiService(axiosParams)
                 .then(data => {
-                    setToken(data.data.data.sl_token)
-                    console.log("Token Ok")
+                    const {sl_token} = data.data.data
+                    setAccessToken(sl_token);
+                    sessionStorage.setItem("accessToken", sl_token);
+                    navigate("/");
                 })
     }
-
     return (
         <Wrapper >
             <Form>
-            <input
-                type="text"
-                placeholder="Name"
-                onChange={handleNameChange}
-            />
-            <input
-                type="text"
-                placeholder="Email"
-                onChange={handleEmailChange}
-            />
-            <button type="button" onClick={handleSubmit}>
-                Login
+                Name
+            <input type="text" onChange={(e) => setUser(e.target.value)}/>
+                Email
+            <input type="text" onChange={(e) =>setEmail(e.target.value)}/>
+            <button type="button" onClick={handleLogin}>
+                Go
             </button>
             </Form>
         </Wrapper>

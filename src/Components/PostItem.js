@@ -1,22 +1,18 @@
-import {apiCall} from "../Service/api.service";
-import {useEffect} from "react";
+import styled from "styled-components";
 
-const Posts = () => {
+const Wrapper = styled.div`
+  margin: 10px;
+  font-size: 0.8em;
+`;
 
+export const PostItem = ({row}) => {
+    const {message, from_name, created_time} = row;
+    const date = new Date(created_time);
 
-useEffect(() =>{
-    run();
-    console.log(token, "test")
-},[token])
-
-const run = () => {
-    apiCall('get','https://api.supermetrics.com/assignment/posts')
-        .then(data => {
-            console.log(data)
-        })
-}
-
-const getPosts = async (sl_token) => {
-    return await fetch(`https://api.supermetrics.com/assignment/posts?sl_token=${sl_token}`);
-};
+    return (
+        <Wrapper>
+            {message}
+            <p>{from_name} {date.toLocaleDateString() } </p>
+        </Wrapper>
+    )
 }
