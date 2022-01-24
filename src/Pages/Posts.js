@@ -22,7 +22,7 @@ import {
 
 const Section = styled.div`
   background-color: #333634;
-  height: 100vh;
+  height: 100%;
 `;
 const Container = styled.div`
   max-width: 1000px;
@@ -60,7 +60,7 @@ export default function Posts() {
                 setData(data.data.data.posts)
             })
     }
-    const getPostItem = () => {
+    const getPostList = () => {
         if (postList) {
             sortArray(sortMode, postList)
             return postList.map(row => {
@@ -113,7 +113,7 @@ export default function Posts() {
                         {getUserList()}
                     </div>
                     <div>
-                        {getPostItem() || <Spinner/>}
+                        {getPostList() || <Spinner/>}
                     </div>
                 </Wrapper>
             </Container>
