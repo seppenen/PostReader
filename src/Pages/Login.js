@@ -41,12 +41,12 @@ export default function Login() {
                 .then(data => {
                     const {sl_token} = data.data.data
                     setAccessToken(sl_token);
-                    handleCookies(sl_token);
+                    setCookies(sl_token);
                     navigate("/");
                 })
         }
     }
-    const handleCookies = (sl_token) =>{
+    const setCookies = (sl_token) =>{
         let now = new Date();
         now.setTime(now.getTime() + 3600 * 1000);
         Cookies.set("accessToken", sl_token, {expires: now});
