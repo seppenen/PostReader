@@ -6,12 +6,13 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
+import {BASE_URL} from "./Resources/Constants";
 
 export const CustomRoutes = () => {
     const protectedPaths = {
         '/': <Posts/>,
-        'posts': <Posts/>,
-        'posts/:id': <Posts/>,
+        '/posts': <Posts/>,
+        '/posts/:id': <Posts/>,
 
     }
     const protectedRoutes = () => {
@@ -21,7 +22,7 @@ export const CustomRoutes = () => {
             })
     }
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={`${BASE_URL}`}>
             <Routes>
                 <Route key="login" path="/login" element={<Login/>}/>
                 <Route element={<RequireAuth/>}>
