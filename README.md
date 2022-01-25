@@ -4,4 +4,5 @@
 <p>Create .env file with secret key "u16a6m81mhid5ue1z3v2g0uh"</p>
 <p>Change router BASE_URL param if needed.</p>
 
-![img.png](img.png)
+![img_3.png](img_3.png)
+![img_2.png](img_2.png)
