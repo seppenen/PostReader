@@ -47,7 +47,9 @@ export default function Login() {
         }
     }
     const handleCookies = (sl_token) =>{
-        Cookies.set("accessToken", sl_token, {expires: 1});
+        let now = new Date();
+        now.setTime(now.getTime() + 3600 * 1000);
+        Cookies.set("accessToken", sl_token, {expires: now});
     }
     return (
         <Wrapper>
