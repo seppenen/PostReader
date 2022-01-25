@@ -45,7 +45,7 @@ export default function Posts() {
     const [data, setData] = useState();
     const [userList, setUserList] = useState();
     const [postList, setPostsList] = useState();
-    const [sortMode, setSortMode] = useState('dateASC')
+    const [sortMode, setSortMode] = useState('ASC')
 
     const axiosParams = {
         method: 'get',
