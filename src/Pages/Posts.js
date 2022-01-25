@@ -67,8 +67,7 @@ export default function Posts() {
         if (postList) {
             sortArray(sortMode, postList)
             return postList.map(row => {
-                return (<PostItem key={row.id} row={row}/>
-                )
+                return (<PostItem key={row.id} row={row}/>)
             })
         }
     }
@@ -78,17 +77,18 @@ export default function Posts() {
             sortArray('nameASC', filteredObj);
             return filteredObj.map(row => {
                 const count = totalCount(data, row.from_id).length
-                return (<UserItem count={count} key={row.id} url={id} row={row}/>
-                )
+                return (<UserItem count={count} key={row.id} url={id} row={row}/>)
             })
         }
     }
+
     const handleUserSearch = (value) => {
         setUserList(updateUserList(data, value))
     }
     const handlePostSearch = (value) => {
         setPostsList(updatePostList(data, value))
     }
+
     useEffect(() => {
         setPostsList(processRows(data, id, null))
     }, [data, id])
