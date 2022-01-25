@@ -1,6 +1,6 @@
 import Posts from "./Pages/Posts";
 import Login from "./Pages/Login";
-import {RequireAuth} from "./Utils/RequireAuth";
+import {Auth} from "./Utils/Auth";
 import {
     BrowserRouter,
     Routes,
@@ -25,7 +25,7 @@ export const CustomRoutes = () => {
         <BrowserRouter basename={`${BASE_URL}`}>
             <Routes>
                 <Route key="login" path="/login" element={<Login/>}/>
-                <Route element={<RequireAuth/>}>
+                <Route element={<Auth/>}>
                     {protectedRoutes()}
                 </Route>
             </Routes>
