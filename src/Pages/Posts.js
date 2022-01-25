@@ -23,7 +23,7 @@ import {
 const Section = styled.div`
   background-color: #333634;
   height: 100%;
-  min-height:100vh;
+  min-height: 100vh;
 `;
 const Container = styled.div`
   max-width: 1000px;
@@ -32,10 +32,10 @@ const Container = styled.div`
   background-color: inherit;
 `;
 const Wrapper = styled.div`
-   display: flex;
+  display: flex;
 `;
 const WrapperUserList = styled.div`
-    min-width:240px;
+  min-width: 240px;
 `;
 const ContentWrapper = styled.div`
   display: flex;
@@ -115,13 +115,13 @@ export default function Posts() {
                     {!data ?
                         <Spinner/> :
                         <ContentWrapper>
-                    <WrapperUserList>
-                        {getUserList()}
-                    </WrapperUserList>
-                    <div>
-                        {getPostList() || <Spinner/>}
-                    </div>
-                            </ContentWrapper>
+                            <WrapperUserList>
+                                {getUserList()}
+                            </WrapperUserList>
+                            <div>
+                                {getPostList() || <Spinner/>}
+                            </div>
+                        </ContentWrapper>
                     }
                 </Wrapper>
             </Container>
