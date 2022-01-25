@@ -8,8 +8,8 @@ const Wrapper = styled.div`
 `;
 const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  flex-grow: 2
+  justify-content: center;
+  flex-grow: 1;
 `;
 const InputWrapper = styled.div`
   display: flex;
