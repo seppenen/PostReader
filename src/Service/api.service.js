@@ -9,7 +9,7 @@ const qs = require('qs')
 
 export function ApiService(axiosParams) {
     return new Promise((resolve, reject) => {
-        const secretKey = process.env.REACT_APP_NOT_SECRET_CODE;
+        const secretKey = process.env.REACT_APP_SECRET_KEY;
         const {method, token, userName, email} = axiosParams;
         const baseUrl = token ? `${POST_URL}?sl_token=${token}` : LOGIN_URL;
 
