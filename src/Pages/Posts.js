@@ -32,13 +32,19 @@ const Container = styled.div`
   background-color: inherit;
 `;
 const Wrapper = styled.div`
+   display: flex;
+`;
+const WrapperUserList = styled.div`
+    min-width:240px;
+`;
+const ContentWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   gap: 7px;
   @media (max-width: 800px) {
     flex-direction: column;
   }
 `;
+
 export default function Posts() {
     const {accessToken} = useContext(AuthContext)
     const {id} = useParams();
@@ -106,12 +112,17 @@ export default function Posts() {
                         handlePostSearch(value);
                     }}/>
                 <Wrapper>
-                    <div>
+                    {!data ?
+                        <Spinner/> :
+                        <ContentWrapper>
+                    <WrapperUserList>
                         {getUserList()}
-                    </div>
+                    </WrapperUserList>
                     <div>
                         {getPostList() || <Spinner/>}
                     </div>
+                            </ContentWrapper>
+                    }
                 </Wrapper>
             </Container>
         </Section>
