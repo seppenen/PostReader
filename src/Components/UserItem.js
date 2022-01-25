@@ -35,7 +35,7 @@ const Circle = styled.div`
   text-align: center;
 `;
 
-export const UserList = ({url, count, row}) => {
+export const UserItem = ({url, count, row}) => {
     const {from_name, from_id} = row
     const [active, setActive] = useState(url)
 

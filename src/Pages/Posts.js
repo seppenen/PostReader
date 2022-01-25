@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import {ApiService} from "../Service/api.service";
 import {Header} from "../Components/Header"
 import {PostItem} from "../Components/PostItem"
-import {UserList} from "../Components/UserList";
+import {UserItem} from "../Components/UserItem";
 import {Spinner} from "../Components/Spinner";
 import {AuthContext} from "../context/AuthProvider";
 import {useParams} from "react-router-dom";
@@ -72,7 +72,7 @@ export default function Posts() {
             sortArray('nameASC', filteredObj);
             return filteredObj.map(row => {
                 const count = totalCount(data, row.from_id).length
-                return (<UserList count={count} key={row.id} url={id} row={row}/>
+                return (<UserItem count={count} key={row.id} url={id} row={row}/>
                 )
             })
         }
