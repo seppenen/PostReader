@@ -30,8 +30,10 @@ export const distinct = (obj) => {
 }
 // Sort object A-Z Z-A
 export const sortArray = (mode, obj ) => {
+    // eslint-disable-next-line default-case
     switch (mode) {
         case 'nameASC':
+            // eslint-disable-next-line array-callback-return
             return obj.sort((a, b) => {
                 if (a["from_name"] < b["from_name"]) {
                     return -1;

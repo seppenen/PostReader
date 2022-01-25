@@ -3,7 +3,7 @@ import {useState, useContext} from "react";
 import {ApiService} from "../Service/api.service";
 import {AuthContext} from "../context/AuthProvider";
 import {useNavigate} from "react-router-dom";
-
+import Cookies from 'js-cookie';
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -35,17 +35,19 @@ export default function Login() {
         userName: user,
         email: email
     }
-
     const handleLogin = () => {
         if (user && email) {
             ApiService(axiosParams)
                 .then(data => {
                     const {sl_token} = data.data.data
                     setAccessToken(sl_token);
-                    sessionStorage.setItem("accessToken", sl_token);
+                    handleCookies(sl_token);
                     navigate("/");
                 })
         }
+    }
+    const handleCookies = (sl_token) =>{
+        Cookies.set("accessToken", sl_token, {expires: 1});
     }
     return (
         <Wrapper>

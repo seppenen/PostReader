@@ -1,5 +1,5 @@
 import {Outlet, Navigate} from "react-router-dom";
-import {useContext, useEffect,} from "react";
+import {useContext} from "react";
 import {AuthContext} from "../context/AuthProvider";
 
 export function RequireAuth() {
