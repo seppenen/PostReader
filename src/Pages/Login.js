@@ -31,7 +31,6 @@ const WrapperForm = styled.form`
   button {
     align-self: flex-end;
   }
-
   input[type="text"] {
     margin-bottom: 10px;
     border: 1px solid #3498db;
