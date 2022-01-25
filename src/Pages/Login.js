@@ -16,10 +16,10 @@ const Wrapper = styled.div`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   border: 1px solid #000;
   background-color: #fff;
-  height:300px;
+  height: 300px;
   padding: 0px 150px 0px 150px;
 `;
 
@@ -27,6 +27,7 @@ const WrapperForm = styled.form`
   display: flex;
   font-size: 0.8em;
   flex-direction: column;
+
   button {
     align-self: flex-end;
   }
@@ -39,7 +40,7 @@ const WrapperForm = styled.form`
 `;
 const WrapperHeading = styled.div`
   text-align: center;
-font-size:2em;
+  font-size: 2em;
 `;
 
 export default function Login() {
