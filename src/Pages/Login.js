@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {useState, useContext, useEffect} from "react";
+import {useState, useContext} from "react";
 import {ApiService} from "../Service/api.service";
 import {AuthContext} from "../context/AuthProvider";
 import {useNavigate} from "react-router-dom";
