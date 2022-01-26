@@ -119,7 +119,7 @@ export default function Posts() {
                                 {getUserList()}
                             </WrapperUserList>
                             <div>
-                                {getPostList() || <Spinner/>}
+                                {getPostList()}
                             </div>
                         </ContentWrapper>
                     }
