@@ -64,22 +64,18 @@ export default function Posts() {
             })
     }
     const getPostList = () => {
-        if (postList) {
             sortArray(sortMode, postList)
             return postList.map(row => {
                 return (<PostItem key={row.id} row={row}/>)
             })
-        }
     }
     const getUserList = () => {
-        if (data) {
             const filteredObj = distinct(userList || data)
             sortArray('nameASC', filteredObj);
             return filteredObj.map(row => {
                 const count = totalCount(data, row.from_id).length
                 return (<UserItem count={count} key={row.id} url={id} row={row}/>)
             })
-        }
     }
 
     const handleUserSearch = (value) => {
@@ -112,7 +108,7 @@ export default function Posts() {
                         handlePostSearch(value);
                     }}/>
                 <Wrapper>
-                    {!data ?
+                    {!postList ?
                         <Spinner/> :
                         <ContentWrapper>
                             <WrapperUserList>
