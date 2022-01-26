@@ -27,12 +27,13 @@ const ContentWrapper = styled.div`
   justify-content: space-between;
 `;
 const Circle = styled.div`
+  display:inherit;
   height: 40px;
   width: 40px;
-  line-height: 40px;
+  justify-content: center;
   background-color: #bbb;
   border-radius: 50%;
-  text-align: center;
+  align-items: center;
 `;
 
 export const UserItem = ({url, count, row}) => {
