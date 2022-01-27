@@ -71,9 +71,9 @@ export default function Posts() {
     }
     const getUserList = () => {
             const filteredObj = distinct(userList || data)
-            sortArray('nameASC', filteredObj);
+            sortArray(null, filteredObj);
             return filteredObj.map(row => {
-                const count = totalCount(data, row.from_id).length
+                const count = totalCount(data, row.from_id)
                 return (<UserItem count={count} key={row.id} url={id} row={row}/>)
             })
     }
@@ -98,7 +98,7 @@ export default function Posts() {
         <Section>
             <Container>
                 <Header
-                    callBack={(value) => {
+                    handleSortMode={(value) => {
                         setSortMode(value)
                     }}
                     searchUsers={(value) => {

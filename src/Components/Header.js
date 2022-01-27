@@ -17,9 +17,9 @@ const InputWrapper = styled.div`
   flex-grow: 1
 `;
 
-export function Header({callBack, searchUsers, searchPosts}) {
-    const handleSorting = (value) => {
-        callBack(value)
+export function Header({handleSortMode, searchUsers, searchPosts}) {
+    const setSortMode = (value) => {
+        handleSortMode(value)
     }
     return (
         <Wrapper>
@@ -31,8 +31,8 @@ export function Header({callBack, searchUsers, searchPosts}) {
                 }}
             />
             <ButtonWrapper>
-                <button onClick={(e) => handleSorting(e.target.outerText)}>ASC</button>
-                <button onClick={(e) => handleSorting(e.target.outerText)}>DESC</button>
+                <button onClick={(e) => setSortMode(e.target.outerText)}>ASC</button>
+                <button onClick={(e) => setSortMode(e.target.outerText)}>DESC</button>
             </ButtonWrapper>
             <InputWrapper>
                 <input
