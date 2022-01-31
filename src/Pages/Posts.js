@@ -57,25 +57,27 @@ export default function Posts() {
         method: 'get',
         token: accessToken
     }
-    const doCall = () => {
-        ApiService(axiosParams)
-            .then(data => {
-                setData(data.data.data.posts)
-            })
+    const doCall = async () => {
+        try {
+            const response = await ApiService(axiosParams)
+            setData(response.data.data.posts)
+        } catch (e) {
+            console.log(e)
+        }
     }
     const getPostList = () => {
-            sortArray(sortMode, postList)
-            return postList.map(row => {
-                return (<PostItem key={row.id} row={row}/>)
-            })
+        sortArray(sortMode, postList)
+        return postList.map(row => {
+            return (<PostItem key={row.id} row={row}/>)
+        })
     }
     const getUserList = () => {
-            const filteredObj = distinct(userList || data)
-            sortArray(null, filteredObj);
-            return filteredObj.map(row => {
-                const count = totalCount(data, row.from_id)
-                return (<UserItem count={count} key={row.id} url={id} row={row}/>)
-            })
+        const filteredObj = distinct(userList || data)
+        sortArray(null, filteredObj);
+        return filteredObj.map(row => {
+            const count = totalCount(data, row.from_id)
+            return (<UserItem count={count} key={row.id} url={id} row={row}/>)
+        })
     }
 
     const handleUserSearch = (value) => {

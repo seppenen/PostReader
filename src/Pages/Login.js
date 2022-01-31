@@ -31,6 +31,7 @@ const WrapperForm = styled.form`
   button {
     align-self: flex-end;
   }
+
   input[type="text"] {
     margin-bottom: 10px;
     border: 1px solid #3498db;
@@ -53,14 +54,16 @@ export default function Login() {
         userName: user,
         email: email
     }
-    const handleLogin = () => {
+
+    const handleLogin = async () => {
         if (user && email) {
-            ApiService(axiosParams)
-                .then(data => {
-                    const {sl_token} = data.data.data
-                    setAccessToken(sl_token);
-                    navigate("/");
-                })
+            try {
+                const response = await ApiService(axiosParams)
+                setAccessToken(response.data.data.sl_token);
+                navigate("/");
+            } catch (e) {
+                console.log(e)
+            }
         }
     }
     return (
