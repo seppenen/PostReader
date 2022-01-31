@@ -8,15 +8,16 @@ const Wrapper = styled.div`
   margin-bottom: 15px;
 `;
 
+export const PostItem = ({ row }) => {
+  const { message, from_name, created_time } = row;
+  const date = new Date(created_time);
 
-export const PostItem = ({row}) => {
-    const {message, from_name, created_time} = row;
-    const date = new Date(created_time);
-
-    return (
-        <Wrapper>
-            <p>{from_name} {date.toLocaleDateString()} </p>
-            <p>{message}</p>
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper>
+      <p>
+        {from_name} {date.toLocaleDateString()}{" "}
+      </p>
+      <p>{message}</p>
+    </Wrapper>
+  );
+};

@@ -1,12 +1,12 @@
-import './App.css';
-import {CustomRoutes} from "./Routes";
+import "./App.css";
+import { CustomRoutes } from "./Routes";
 
 function App() {
-    return (
-        <>
-            <CustomRoutes/>
-        </>
-    );
+  return (
+    <>
+      <CustomRoutes />
+    </>
+  );
 }
 
 export default App;

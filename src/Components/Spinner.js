@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   font-size: 2em;
@@ -6,9 +6,5 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 export const Spinner = () => {
-
-    return (
-        <Wrapper>Loading</Wrapper>
-
-    )
-}
+  return <Wrapper>Loading</Wrapper>;
+};
