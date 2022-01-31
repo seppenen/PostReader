@@ -23,13 +23,9 @@ export function ApiService(axiosParams) {
             url: baseUrl,
             data: dataAsString
         }
-        try {
             axios(customConfig)
                 .then(response => {
                     resolve(response)
                 })
-        } catch (err) {
-            reject(err);
-        }
     })
 }
