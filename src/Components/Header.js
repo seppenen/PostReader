@@ -18,9 +18,9 @@ const InputWrapper = styled.div`
 `;
 
 export function Header({ handleSortMode, searchUsers, searchPosts }) {
-  const setSortMode = (value) => {
-    handleSortMode(value);
-  };
+  
+  const setSortMode = (value) => handleSortMode(value);
+
   return (
     <Wrapper>
       <input
