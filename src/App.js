@@ -1,5 +1,5 @@
 import "./App.css";
-import { CustomRoutes } from "./Router/Routes";
+import { CustomRoutes } from "./RouteService";
 import { Suspense } from "react";
 
 
