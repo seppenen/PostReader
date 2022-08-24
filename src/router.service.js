@@ -1,7 +1,8 @@
 import { Auth } from "./Utils/Auth";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BASENAME } from "./Resources/Constants";
 import { lazy } from "react";
+
 
 export const CustomRoutes = () => {
 
@@ -13,8 +14,12 @@ export const CustomRoutes = () => {
 
   const componentArray = ["Posts", "Login"];
 
+  const getLazyComponent = (value) => {
+    return lazy(() => import(`./Pages/${value}`));
+  };
+
   componentArray.forEach(item => {
-      const Component = lazy(() => import(`./Pages/${item}`));
+      const Component = getLazyComponent(item);
       Object.entries(paths).forEach(([key]) => {
         if (key.includes(item.toLowerCase())) {
           paths[key] = Component;
@@ -22,15 +27,15 @@ export const CustomRoutes = () => {
       });
     }
   );
-  paths["/"] = lazy(() => import("./Pages/Posts"));
+  paths["/"] = getLazyComponent("Posts");
 
   const routes = () => {
-    const LoginComponent = paths["/login"];
+    const HomeComponent = paths["/login"];
     return (<>
-      <Route key="login" path="/login" element={<LoginComponent />} />
+      <Route key="login" path="/login" element={<HomeComponent />} />
       <Route element={<Auth />}>
-        {Object.entries(paths).map(([key, Value], index) => {
-          return <Route key={index} path={key} element={<Value />} />;
+        {Object.entries(paths).map(([key, Component], index) => {
+          return <Route key={index} path={key} element={<Component />} />;
         })}
       </Route>
     </>);
