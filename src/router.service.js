@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BASENAME } from "./Resources/Constants";
 import { lazy } from "react";
 
-
 export const CustomRoutes = () => {
 
   const paths = {
