@@ -13,12 +13,12 @@ export const CustomRoutes = () => {
 
   const componentArray = ["Posts", "Login"];
 
-  const getLazyComponent = (value) => {
+  const importComponent = (value) => {
     return lazy(() => import(`./Pages/${value}`));
   };
 
   componentArray.forEach(item => {
-      const Component = getLazyComponent(item);
+      const Component = importComponent(item);
       Object.entries(paths).forEach(([key]) => {
         if (key.includes(item.toLowerCase())) {
           paths[key] = Component;
@@ -26,24 +26,18 @@ export const CustomRoutes = () => {
       });
     }
   );
-  paths["/"] = getLazyComponent("Posts");
-
-  const routes = () => {
-    const HomeComponent = paths["/login"];
-    return (<>
-      <Route key="login" path="/login" element={<HomeComponent />} />
-      <Route element={<Auth />}>
-        {Object.entries(paths).map(([key, Component], index) => {
-          return <Route key={index} path={key} element={<Component />} />;
-        })}
-      </Route>
-    </>);
-  };
+  paths["/"] = importComponent("Posts");
+  const LoginComponent = paths["/login"];
 
   return (
     <BrowserRouter basename={`${BASENAME}`}>
       <Routes>
-        {routes()}
+        <Route key="login" path="/login" element={<LoginComponent />} />
+        <Route element={<Auth />}>
+          {Object.entries(paths).map(([key, Component], index) => {
+            return <Route key={index} path={key} element={<Component />} />;
+          })}
+        </Route>
       </Routes>
     </BrowserRouter>
   );
